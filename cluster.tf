@@ -6,7 +6,7 @@ resource "ovh_cloud_project_kube" "my_kube_cluster" {
 }
 
 resource "ovh_cloud_project_kube_nodepool" "node_pool" {
-  count = length(variable.node_pools)
+  count = length(var.node_pools)
 
   service_name  = var.service_name
   kube_id       = ovh_cloud_project_kube.my_kube_cluster.id

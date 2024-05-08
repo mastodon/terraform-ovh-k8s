@@ -26,7 +26,7 @@ variable "node_pools" {
   type        = list(object({
     flavor_name = string
     nodes       = number
-    template    = optional(map, {})
+    template    = optional(map(any), {})
   }))
 }
 
@@ -44,6 +44,6 @@ variable "network_gateway_model" {
 
   validation {
     condition     = contains(["s", "m", "l"], var.network_gateway_model)
-    error_message = "Valid values for network_gateway_model are (s, m, l)".
+    error_message = "Valid values for network_gateway_model are (s, m, l)"
   }
 }

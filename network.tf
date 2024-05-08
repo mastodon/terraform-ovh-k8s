@@ -2,7 +2,7 @@ locals {
   network_name = "${var.cluster_name}-vlan"
   gateway_name = "${var.cluster_name}-vlan-gateway"
 
-  subnet_mask  = split(var.network_cidr)[1]
+  subnet_mask  = split("/", var.network_cidr)[1]
   subnet_start = cidrhost(var.network_cidr, 2)
   subnet_end   = cidrhost(var.network_cidr, pow(2, (32 - local.subnet_mask)) - 2)
 }
@@ -25,7 +25,7 @@ resource "ovh_cloud_project_network_private_subnet" "subnet" {
 
 resource "ovh_cloud_project_gateway" "gateway" {
   service_name = ovh_cloud_project_network_private.net.service_name
-  name         = var.gateway_name
+  name         = local.gateway_name
   model        = var.network_gateway_model
   region       = ovh_cloud_project_network_private_subnet.subnet.region
   network_id   = tolist(ovh_cloud_project_network_private.net.regions_attributes[*].openstackid)[0]
