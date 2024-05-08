@@ -1,10 +1,5 @@
-variable "service_name" {
-  description = "Name of the project in which to create the cluster & its resources."
-  type        = string
-}
-
 variable "project_id" {
-  description = "Project"
+  description = "The ID of the Public Cloud project the resources will be created in."
   type        = string
 }
 

@@ -7,20 +7,14 @@ locals {
   subnet_end   = cidrhost(var.network_cidr, pow(2, (32 - local.subnet_mask)) - 2)
 }
 
-resource "ovh_vrack_cloudproject" "attach" {
-  service_name = var.service_name
-  project_id   = var.project_id
-}
-
 resource "ovh_cloud_project_network_private" "net" {
-  service_name = ovh_vrack_cloudproject.attach.project_id
+  service_name = var.project_id
   name         = local.network_name
   regions      = [var.region]
-  depends_on   = [ovh_vrack_cloudproject.attach]
 }
 
 resource "ovh_cloud_project_network_private_subnet" "subnet" {
-  service_name = ovh_cloud_project_network_private.net.service_name
+  service_name = var.project_id
   network_id   = ovh_cloud_project_network_private.net.id
 
   region  = var.region
@@ -33,10 +27,10 @@ resource "ovh_cloud_project_network_private_subnet" "subnet" {
 }
 
 resource "ovh_cloud_project_gateway" "gateway" {
-  service_name = ovh_cloud_project_network_private.net.service_name
+  service_name = var.project_id
   name         = local.gateway_name
   model        = var.network_gateway_model
-  region       = ovh_cloud_project_network_private_subnet.subnet.region
-  network_id   = tolist(ovh_cloud_project_network_private.net.regions_attributes[*].openstackid)[0]
+  region       = var.region
+  network_id   = ovh_cloud_project_network_private.net.id
   subnet_id    = ovh_cloud_project_network_private_subnet.subnet.id
 }
