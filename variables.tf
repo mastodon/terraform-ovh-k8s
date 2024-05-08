@@ -3,6 +3,11 @@ variable "service_name" {
   type        = string
 }
 
+variable "project_id" {
+  description = "Project"
+  type        = string
+}
+
 variable "region" {
   description = "Region in which to create the various resources."
   type        = string
@@ -23,7 +28,7 @@ variable "cluster_version" {
 
 variable "node_pools" {
   description = "Node pools to create for the cluster."
-  type        = list(object({
+  type = list(object({
     flavor_name = string
     nodes       = number
     template    = optional(map(any), {})
