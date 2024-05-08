@@ -31,6 +31,6 @@ resource "ovh_cloud_project_gateway" "gateway" {
   name         = local.gateway_name
   model        = var.network_gateway_model
   region       = var.region
-  network_id   = ovh_cloud_project_network_private.net.id
+  network_id   = tolist(ovh_cloud_project_network_private.net.regions_attributes[*].openstackid)[0]
   subnet_id    = ovh_cloud_project_network_private_subnet.subnet.id
 }
