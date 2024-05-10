@@ -47,3 +47,41 @@ variable "network_gateway_model" {
     error_message = "Valid values for network_gateway_model are (s, m, l)"
   }
 }
+
+# OIDC settings
+
+variable "oidc_provider_url" {
+  description = "URL to use for OIDC authentication. Enables OIDC if specified."
+  type        = string
+  default     = ""
+}
+
+variable "oidc_client_id" {
+  description = "OIDC client ID to give the cluster for login."
+  type        = string
+  default     = ""
+}
+
+variable "oidc_username_claim" {
+  description = "OIDC Property to use for username."
+  type        = string
+  default     = "email"
+}
+
+variable "oidc_username_prefix" {
+  description = "Prefix to add to all usernames connecting to the cluster."
+  type        = string
+  default     = ""
+}
+
+variable "oidc_groups_claim" {
+  description = "Groups to include in the OIDC claim."
+  type        = list(string)
+  default     = []
+}
+
+variable "oidc_groups_prefix" {
+  description = "Prefix to add to all groups connecting to the cluster."
+  type        = string
+  default     = ""
+}
