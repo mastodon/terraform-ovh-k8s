@@ -24,10 +24,11 @@ variable "cluster_version" {
 variable "node_pools" {
   description = "Node pools to create for the cluster."
   type = list(object({
-    flavor_name = string
-    nodes       = number
-    name        = optional(string, "")
-    template    = optional(map(any), {})
+    flavor_name    = string
+    nodes          = number
+    name           = optional(string, "")
+    template       = optional(map(any), {})
+    monthly_billed = optional(bool, false)
   }))
 }
 

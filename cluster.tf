@@ -12,13 +12,14 @@ resource "ovh_cloud_project_kube" "cluster" {
 resource "ovh_cloud_project_kube_nodepool" "node_pool" {
   count = length(var.node_pools)
 
-  service_name  = var.project_id
-  kube_id       = ovh_cloud_project_kube.cluster.id
-  name          = var.node_pools[count.index].name != "" ? var.node_pools[count.index].name : "pool${count.index}"
-  flavor_name   = var.node_pools[count.index].flavor_name
-  desired_nodes = var.node_pools[count.index].nodes
-  max_nodes     = var.node_pools[count.index].nodes
-  min_nodes     = var.node_pools[count.index].nodes
+  service_name   = var.project_id
+  kube_id        = ovh_cloud_project_kube.cluster.id
+  name           = var.node_pools[count.index].name != "" ? var.node_pools[count.index].name : "pool${count.index}"
+  flavor_name    = var.node_pools[count.index].flavor_name
+  desired_nodes  = var.node_pools[count.index].nodes
+  max_nodes      = var.node_pools[count.index].nodes
+  min_nodes      = var.node_pools[count.index].nodes
+  monthly_billed = var.node_pools[count.index].monthly_billed
 }
 
 resource "ovh_cloud_project_kube_oidc" "oidc" {
