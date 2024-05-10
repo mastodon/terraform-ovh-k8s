@@ -26,6 +26,7 @@ variable "node_pools" {
   type = list(object({
     flavor_name = string
     nodes       = number
+    name        = optional(string, "")
     template    = optional(map(any), {})
   }))
 }
