@@ -22,12 +22,9 @@ No modules.
 
 | Name | Type |
 |------|------|
-| [ovh_cloud_project_gateway.gateway](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project_gateway) | resource |
 | [ovh_cloud_project_kube.cluster](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project_kube) | resource |
 | [ovh_cloud_project_kube_nodepool.node_pool](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project_kube_nodepool) | resource |
 | [ovh_cloud_project_kube_oidc.oidc](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project_kube_oidc) | resource |
-| [ovh_cloud_project_network_private.net](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project_network_private) | resource |
-| [ovh_cloud_project_network_private_subnet.subnet](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project_network_private_subnet) | resource |
 
 ## Inputs
 
@@ -35,8 +32,7 @@ No modules.
 |------|-------------|------|---------|:--------:|
 | <a name="input_cluster_name"></a> [cluster\_name](#input\_cluster\_name) | Name of the cluster to create. | `string` | n/a | yes |
 | <a name="input_cluster_version"></a> [cluster\_version](#input\_cluster\_version) | Kubelet version to use when creating the cluster. | `string` | n/a | yes |
-| <a name="input_network_cidr"></a> [network\_cidr](#input\_network\_cidr) | Subnet to assign to the private network. | `string` | n/a | yes |
-| <a name="input_network_gateway_model"></a> [network\_gateway\_model](#input\_network\_gateway\_model) | Size of the gateway to use for the private network. | `string` | `"s"` | no |
+| <a name="input_network_openstack_id"></a> [network\_openstack\_id](#input\_network\_openstack\_id) | Openstack ID of the private network in which the cluster should be placed. | `any` | n/a | yes |
 | <a name="input_node_pools"></a> [node\_pools](#input\_node\_pools) | Node pools to create for the cluster. | <pre>list(object({<br>    flavor_name    = string<br>    nodes          = number<br>    name           = optional(string, "")<br>    template       = optional(map(any), {})<br>    monthly_billed = optional(bool, false)<br>  }))</pre> | n/a | yes |
 | <a name="input_oidc_client_id"></a> [oidc\_client\_id](#input\_oidc\_client\_id) | OIDC client ID to give the cluster for login. | `string` | `""` | no |
 | <a name="input_oidc_groups_claim"></a> [oidc\_groups\_claim](#input\_oidc\_groups\_claim) | Groups to include in the OIDC claim. | `list(string)` | `[]` | no |
@@ -54,8 +50,4 @@ No modules.
 | <a name="output_id"></a> [id](#output\_id) | The ID of the cluster |
 | <a name="output_kubeconfig"></a> [kubeconfig](#output\_kubeconfig) | kubeconfig to use when connecting to the cluster |
 | <a name="output_name"></a> [name](#output\_name) | Name of the cluster |
-| <a name="output_network_id"></a> [network\_id](#output\_network\_id) | ID of the private network created for the cluster. |
-| <a name="output_network_name"></a> [network\_name](#output\_network\_name) | Name of the private network created for the cluster. |
 | <a name="output_nodes_url"></a> [nodes\_url](#output\_nodes\_url) | URLs of the nodes attached to the cluster |
-| <a name="output_openstackID"></a> [openstackID](#output\_openstackID) | n/a |
-| <a name="output_vlan_id"></a> [vlan\_id](#output\_vlan\_id) | VLAN ID of the private network created for the cluster. |
