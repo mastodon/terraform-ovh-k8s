@@ -24,7 +24,7 @@ resource "ovh_cloud_project_kube_nodepool" "node_pool" {
 resource "ovh_cloud_project_kube_oidc" "oidc" {
   count = var.oidc_provider_url != "" ? 1 : 0
 
-  service_name = var.projectid
+  service_name = var.project_id
   kube_id      = ovh_cloud_project_kube.cluster.id
 
   client_id    = var.oidc_client_id
