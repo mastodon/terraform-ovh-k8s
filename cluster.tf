@@ -4,7 +4,7 @@ resource "ovh_cloud_project_kube" "cluster" {
   region       = var.region
   version      = var.cluster_version
 
-  private_network_id = tolist(ovh_cloud_project_network_private.net.regions_attributes[*].openstackid)[0]
+  private_network_id = var.network_openstack_id
 
   depends_on = [ovh_cloud_project_network_private_subnet.subnet]
 }
