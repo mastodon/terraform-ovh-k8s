@@ -21,7 +21,7 @@ resource "ovh_cloud_project_kube_nodepool" "node_pool" {
   min_nodes     = var.node_pools[count.index].nodes
 }
 
-resource "ovh_cloud_project_kube_oidc" {
+resource "ovh_cloud_project_kube_oidc" "oidc" {
   count = var.oidc_provider_url != "" ? 1 : 0
 
   service_name = var.projectid
