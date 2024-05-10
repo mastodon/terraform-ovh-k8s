@@ -66,7 +66,7 @@ variable "oidc_client_id" {
 variable "oidc_username_claim" {
   description = "OIDC Property to use for username."
   type        = string
-  default     = "email"
+  default     = ""
 }
 
 variable "oidc_username_prefix" {
