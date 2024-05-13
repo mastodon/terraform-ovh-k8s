@@ -15,8 +15,8 @@ resource "ovh_cloud_project_kube_nodepool" "node_pool" {
   name           = var.node_pools[count.index].name != "" ? var.node_pools[count.index].name : "pool${count.index}"
   flavor_name    = var.node_pools[count.index].flavor_name
   desired_nodes  = var.node_pools[count.index].nodes
-  max_nodes      = var.node_pools[count.index].nodes
-  min_nodes      = var.node_pools[count.index].nodes
+  max_nodes      = var.node_pools[count.index].max_nodes < 1 ? var.node_pools[count.index].nodes : var.node_pools[count.index].max_nodes
+  min_nodes      = var.node_pools[count.index].min_nodes < 1 ? var.node_pools[count.index].nodes : var.node_pools[count.index].min_nodes
   monthly_billed = var.node_pools[count.index].monthly_billed
 }
 
