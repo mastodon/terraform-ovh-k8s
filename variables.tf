@@ -35,7 +35,7 @@ variable "node_pools" {
       object({
         annotations   = optional(map(any), {})
         labels        = optional(map(any), {})
-        finalizers    = optional(list(string), {})
+        finalizers    = optional(list(string), [])
         unschedulable = optional(bool, false)
         taints = optional(list(object({
           effect = string
