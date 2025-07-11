@@ -25,13 +25,13 @@ resource "ovh_cloud_project_kube_nodepool" "node_pool" {
 
     content {
       metadata {
-        annotations = var.node_pools[count.index].template.value["annotations"]
-        finalizers  = var.node_pools[count.index].template.value["finalizers"]
-        labels      = var.node_pools[count.index].template.value["labels"]
+        annotations = var.node_pools[count.index].template.annotations
+        finalizers  = var.node_pools[count.index].template.finalizers
+        labels      = var.node_pools[count.index].template.labels
       }
       spec {
-        unschedulable = var.node_pools[count.index].template.value["unschedulable"]
-        taints        = var.node_pools[count.index].template.value["taints"]
+        unschedulable = var.node_pools[count.index].template.unschedulable
+        taints        = var.node_pools[count.index].template.taints
       }
     }
   }
