@@ -33,15 +33,15 @@ variable "node_pools" {
     monthly_billed     = optional(bool, false)
     template = optional(
       object({
-        annotations   = map(any)
-        labels        = map(any)
-        finalizers    = list(string)
-        unschedulable = bool
-        taints = list(object({
+        annotations   = optional(map(any), null)
+        labels        = optional(map(any), null)
+        finalizers    = optional(list(string), null)
+        unschedulable = optional(bool, false)
+        taints = optional(list(object({
           effect = string
           key    = string
           value  = string
-        }))
+        })), null)
       }),
       null
     )
