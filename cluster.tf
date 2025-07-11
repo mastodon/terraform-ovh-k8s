@@ -21,7 +21,7 @@ resource "ovh_cloud_project_kube_nodepool" "node_pool" {
   availability_zones = var.node_pools[count.index].availability_zones
 
   dynamic "template" {
-    for_each = var.node_pools[count.index].template ? [1] : []
+    for_each = var.node_pools[count.index].template != null ? [1] : []
 
     content {
       metadata {
