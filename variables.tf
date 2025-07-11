@@ -24,13 +24,27 @@ variable "cluster_version" {
 variable "node_pools" {
   description = "Node pools to create for the cluster."
   type = list(object({
-    flavor_name    = string
-    nodes          = number
-    min_nodes      = optional(number, 0)
-    max_nodes      = optional(number, 0)
-    name           = optional(string, "")
-    template       = optional(map(any), {})
-    monthly_billed = optional(bool, false)
+    flavor_name        = string
+    nodes              = number
+    min_nodes          = optional(number, 0)
+    max_nodes          = optional(number, 0)
+    name               = optional(string, "")
+    availability_zones = optional(list(string), [])
+    monthly_billed     = optional(bool, false)
+    template = optional(
+      object({
+        annotations   = map(any)
+        labels        = map(any)
+        finalizers    = list(string)
+        unschedulable = bool
+        taints = list(object({
+          effect = string
+          key    = string
+          value  = string
+        }))
+      }),
+      null
+    )
   }))
 }
 
