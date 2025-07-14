@@ -5,19 +5,37 @@ resource "ovh_cloud_project_kube" "cluster" {
   version      = var.cluster_version
 
   private_network_id = var.network_openstack_id
+  nodes_subnet_id    = var.subnet_id
 }
 
 resource "ovh_cloud_project_kube_nodepool" "node_pool" {
   count = length(var.node_pools)
 
-  service_name   = var.project_id
-  kube_id        = ovh_cloud_project_kube.cluster.id
-  name           = var.node_pools[count.index].name != "" ? var.node_pools[count.index].name : "pool${count.index}"
-  flavor_name    = var.node_pools[count.index].flavor_name
-  desired_nodes  = var.node_pools[count.index].nodes
-  max_nodes      = var.node_pools[count.index].max_nodes < 1 ? var.node_pools[count.index].nodes : var.node_pools[count.index].max_nodes
-  min_nodes      = var.node_pools[count.index].min_nodes < 1 ? var.node_pools[count.index].nodes : var.node_pools[count.index].min_nodes
-  monthly_billed = var.node_pools[count.index].monthly_billed
+  service_name       = var.project_id
+  kube_id            = ovh_cloud_project_kube.cluster.id
+  name               = var.node_pools[count.index].name != "" ? var.node_pools[count.index].name : "pool${count.index}"
+  flavor_name        = var.node_pools[count.index].flavor_name
+  desired_nodes      = var.node_pools[count.index].nodes
+  max_nodes          = var.node_pools[count.index].max_nodes < 1 ? var.node_pools[count.index].nodes : var.node_pools[count.index].max_nodes
+  min_nodes          = var.node_pools[count.index].min_nodes < 1 ? var.node_pools[count.index].nodes : var.node_pools[count.index].min_nodes
+  monthly_billed     = var.node_pools[count.index].monthly_billed
+  availability_zones = var.node_pools[count.index].availability_zones
+
+  dynamic "template" {
+    for_each = var.node_pools[count.index].template != null ? [1] : []
+
+    content {
+      metadata {
+        annotations = var.node_pools[count.index].template["annotations"]
+        finalizers  = var.node_pools[count.index].template["finalizers"]
+        labels      = var.node_pools[count.index].template["labels"]
+      }
+      spec {
+        unschedulable = var.node_pools[count.index].template["unschedulable"]
+        taints        = var.node_pools[count.index].template["taints"]
+      }
+    }
+  }
 }
 
 resource "ovh_cloud_project_kube_oidc" "oidc" {
