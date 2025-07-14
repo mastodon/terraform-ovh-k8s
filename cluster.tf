@@ -5,6 +5,7 @@ resource "ovh_cloud_project_kube" "cluster" {
   version      = var.cluster_version
 
   private_network_id = var.network_openstack_id
+  nodes_subnet_id    = var.subnet_id
 }
 
 resource "ovh_cloud_project_kube_nodepool" "node_pool" {
