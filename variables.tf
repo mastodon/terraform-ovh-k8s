@@ -51,12 +51,12 @@ variable "node_pools" {
 # Network settings
 variable "network_openstack_id" {
   description = "Openstack ID of the private network in which the cluster should be placed."
-  type        = number
+  type        = string
 }
 
 variable "subnet_id" {
   description = "ID of the subnet in the private network in which nodes should be created."
-  type        = number
+  type        = string
 }
 
 # OIDC settings
