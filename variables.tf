@@ -46,6 +46,7 @@ variable "node_pools" {
       null
     )
   }))
+  default = []
 }
 
 # Network settings
