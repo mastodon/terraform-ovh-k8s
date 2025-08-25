@@ -21,6 +21,16 @@ variable "cluster_version" {
   type        = string
 }
 
+variable "update_policy" {
+  description = "How the cluster should perform updates."
+  type        = string
+  default     = "MINIMAL_DOWNTIME"
+
+  validation {
+    condition     = contains(["ALWAYS_UPDATE", "MINIMAL_DOWNTIME", "NEVER_UPDATE"], var.update_policy)
+    error_message = "Must be one of: [ALWAYS_UPDATE, MINIMAL_DOWNTIME, NEVER_UPDATE]"
+  }
+}
 variable "node_pools" {
   description = "Node pools to create for the cluster."
   type = list(object({

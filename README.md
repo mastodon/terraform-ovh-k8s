@@ -44,6 +44,7 @@ No modules.
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | The ID of the Public Cloud project the resources will be created in. | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | Region in which to create the various resources. | `string` | `"DE1"` | no |
 | <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | ID of the subnet in the private network in which nodes should be created. | `string` | n/a | yes |
+| <a name="input_update_policy"></a> [update\_policy](#input\_update\_policy) | How the cluster should perform updates. | `string` | `"MINIMAL_DOWNTIME"` | no |
 
 ## Outputs
 
