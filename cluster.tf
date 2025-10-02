@@ -22,6 +22,10 @@ resource "ovh_cloud_project_kube_nodepool" "node_pool" {
   monthly_billed     = var.node_pools[count.index].monthly_billed
   availability_zones = var.node_pools[count.index].availability_zones
 
+  autoscale                                    = var.node_pools[count.index].autoscale
+  autoscaling_scale_down_unneeded_time_seconds = var.node_pools[count.index].autoscaling_scale_down_unneeded_time_seconds
+  autoscaling_scale_down_unready_time_seconds  = var.node_pools[count.index].autoscaling_scale_down_unready_time_seconds
+  autoscaling_scale_down_utilization_threshold = var.node_pools[count.index].autoscaling_scale_down_utilization_threshold
   dynamic "template" {
     for_each = var.node_pools[count.index].template != null ? [1] : []
 

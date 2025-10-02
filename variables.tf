@@ -34,13 +34,17 @@ variable "update_policy" {
 variable "node_pools" {
   description = "Node pools to create for the cluster."
   type = list(object({
-    flavor_name        = string
-    nodes              = number
-    min_nodes          = optional(number, 0)
-    max_nodes          = optional(number, 0)
-    name               = optional(string, "")
-    availability_zones = optional(list(string), [])
-    monthly_billed     = optional(bool, false)
+    flavor_name                                  = string
+    nodes                                        = number
+    min_nodes                                    = optional(number, 0)
+    max_nodes                                    = optional(number, 0)
+    name                                         = optional(string, "")
+    availability_zones                           = optional(list(string), [])
+    monthly_billed                               = optional(bool, false)
+    autoscale                                    = optional(bool, false)
+    autoscaling_scale_down_unneeded_time_seconds = optional(number, null)
+    autoscaling_scale_down_unready_time_seconds  = optional(number, null)
+    autoscaling_scale_down_utilization_threshold = optional(number, null)
     template = optional(
       object({
         annotations   = optional(map(any), {})
