@@ -1,3 +1,8 @@
+locals {
+  savings_plan      = (var.savings_plan_count > 0 && var.savings_plan_instance != "") ? true : false
+  savings_plan_name = var.savings_plan_name != "" ? var.savings_plan_name : "savings-plan-${var.cluster_name}"
+}
+
 resource "ovh_cloud_project_kube" "cluster" {
   service_name  = var.project_id
   name          = var.cluster_name
@@ -56,4 +61,16 @@ resource "ovh_cloud_project_kube_oidc" "oidc" {
   oidc_username_prefix = var.oidc_username_prefix
   oidc_groups_claim    = var.oidc_groups_claim
   oidc_groups_prefix   = var.oidc_groups_prefix
+}
+
+resource "ovh_savings_plan" "plan" {
+  count = local.savings_plan ? 1 : 0
+
+  service_name = var.project_id
+  display_name = local.savings_plan_name
+
+  flavor       = var.savings_plan_instance
+  period       = var.savings_plan_period
+  size         = var.savings_plan_count
+  auto_renewal = var.savings_plan_auto_renewal
 }

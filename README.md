@@ -26,6 +26,7 @@ No modules.
 | [ovh_cloud_project_kube.cluster](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project_kube) | resource |
 | [ovh_cloud_project_kube_nodepool.node_pool](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project_kube_nodepool) | resource |
 | [ovh_cloud_project_kube_oidc.oidc](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/cloud_project_kube_oidc) | resource |
+| [ovh_savings_plan.plan](https://registry.terraform.io/providers/ovh/ovh/latest/docs/resources/savings_plan) | resource |
 
 ## Inputs
 
@@ -43,6 +44,11 @@ No modules.
 | <a name="input_oidc_username_prefix"></a> [oidc\_username\_prefix](#input\_oidc\_username\_prefix) | Prefix to add to all usernames connecting to the cluster. | `string` | `""` | no |
 | <a name="input_project_id"></a> [project\_id](#input\_project\_id) | The ID of the Public Cloud project the resources will be created in. | `string` | n/a | yes |
 | <a name="input_region"></a> [region](#input\_region) | Region in which to create the various resources. | `string` | `"DE1"` | no |
+| <a name="input_savings_plan_auto_renewal"></a> [savings\_plan\_auto\_renewal](#input\_savings\_plan\_auto\_renewal) | Whether the savings plan should renew automatically. | `bool` | `true` | no |
+| <a name="input_savings_plan_count"></a> [savings\_plan\_count](#input\_savings\_plan\_count) | Number of instances this savings plan applies to. | `number` | `0` | no |
+| <a name="input_savings_plan_instance"></a> [savings\_plan\_instance](#input\_savings\_plan\_instance) | Type of instance this savings plan applies to. | `string` | `""` | no |
+| <a name="input_savings_plan_name"></a> [savings\_plan\_name](#input\_savings\_plan\_name) | Name of the savings plan. | `string` | `""` | no |
+| <a name="input_savings_plan_period"></a> [savings\_plan\_period](#input\_savings\_plan\_period) | The period of time the savings plan applies to. | `string` | `"P1M"` | no |
 | <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | ID of the subnet in the private network in which nodes should be created. | `string` | n/a | yes |
 | <a name="input_update_policy"></a> [update\_policy](#input\_update\_policy) | How the cluster should perform updates. | `string` | `"MINIMAL_DOWNTIME"` | no |
 

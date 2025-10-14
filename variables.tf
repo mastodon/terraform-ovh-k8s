@@ -111,3 +111,35 @@ variable "oidc_groups_prefix" {
   type        = string
   default     = ""
 }
+
+# Savings Plan
+
+variable "savings_plan_instance" {
+  description = "Type of instance this savings plan applies to."
+  type        = string
+  default     = ""
+}
+
+variable "savings_plan_count" {
+  description = "Number of instances this savings plan applies to."
+  type        = number
+  default     = 0
+}
+
+variable "savings_plan_name" {
+  description = "Name of the savings plan."
+  type        = string
+  default     = ""
+}
+
+variable "savings_plan_period" {
+  description = "The period of time the savings plan applies to."
+  type        = string
+  default     = "P1M"
+}
+
+variable "savings_plan_auto_renewal" {
+  description = "Whether the savings plan should renew automatically."
+  type        = bool
+  default     = true
+}
