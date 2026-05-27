@@ -24,7 +24,7 @@ variable "cluster_version" {
 variable "update_policy" {
   description = "How the cluster should perform updates."
   type        = string
-  default     = "MINIMAL_DOWNTIME"
+  default     = "ALWAYS_UPDATE"
 
   validation {
     condition     = contains(["ALWAYS_UPDATE", "MINIMAL_DOWNTIME", "NEVER_UPDATE"], var.update_policy)

@@ -50,7 +50,7 @@ No modules.
 | <a name="input_savings_plan_name"></a> [savings\_plan\_name](#input\_savings\_plan\_name) | Name of the savings plan. | `string` | `""` | no |
 | <a name="input_savings_plan_period"></a> [savings\_plan\_period](#input\_savings\_plan\_period) | The period of time the savings plan applies to. | `string` | `"P1M"` | no |
 | <a name="input_subnet_id"></a> [subnet\_id](#input\_subnet\_id) | ID of the subnet in the private network in which nodes should be created. | `string` | n/a | yes |
-| <a name="input_update_policy"></a> [update\_policy](#input\_update\_policy) | How the cluster should perform updates. | `string` | `"MINIMAL_DOWNTIME"` | no |
+| <a name="input_update_policy"></a> [update\_policy](#input\_update\_policy) | How the cluster should perform updates. | `string` | `"ALWAYS_UPDATE"` | no |
 
 ## Outputs
 
