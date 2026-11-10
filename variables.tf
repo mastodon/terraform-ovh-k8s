@@ -64,8 +64,8 @@ variable "node_pools" {
 }
 
 # Network settings
-variable "network_openstack_id" {
-  description = "Openstack ID of the private network in which the cluster should be placed."
+variable "network_id" {
+  description = "ID of the private vRack network in which the cluster should be placed."
   type        = string
 }
 

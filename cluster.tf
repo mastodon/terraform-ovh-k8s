@@ -5,7 +5,7 @@ resource "ovh_cloud_project_kube" "cluster" {
   version       = var.cluster_version
   update_policy = var.update_policy
 
-  private_network_id = var.network_openstack_id
+  private_network_id = var.network_id
   nodes_subnet_id    = var.subnet_id
 }
 
