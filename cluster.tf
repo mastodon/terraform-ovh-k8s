@@ -59,7 +59,7 @@ resource "ovh_cloud_project_kube_oidc" "oidc" {
 }
 
 resource "ovh_savings_plan" "plan" {
-  count = var.savings_plans
+  count = length(var.savings_plans)
 
   service_name = var.project_id
   display_name = var.savings_plans[count.index].display_name
